@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>furEver Home - Online Pet Adoption</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+<style>
+
+* {
+
+margin: 0;
+
+padding: 0;
+
+box-sizing: border-box;
+
+}
+
+body {
+
+font-family: Arial, sans-serif;
+
+background-color: #fffaf4;
+
+}
+
+header {
+
+display: flex;
+
+justify-content: space-between;
+
+align-items: center;
+
+flex-wrap: wrap;
+
+background-color: #7a4a1c;
+
+color: white;
+
+padding: 15px 30px;
+
+}
+
+.logo {
+
+display: flex;
+
+align-items: center;
+
+font-size: 1.8rem;
+
+font-weight: bold;
+
+}
+
+.logo-icon {
+
+margin-right: 10px;
+
+color: #c49744;
+
+}
+
+.site-name .logo-fur {
+
+color: #c49744;
+
+}
+
+.site-name .logo-ever {
+
+color: white;
+
+}
+
+.header-right {
+
+display: flex;
+
+align-items: center;
+
+gap: 25px;
+
+flex-wrap: wrap;
+
+}
+
+nav {
+
+display: flex;
+
+gap: 20px;
+
+}
+
+nav a {
+
+color: white;
+
+text-decoration: none;
+
+font-weight: 500;
+
+transition: color 0.3s;
+
+}
+
+nav a:hover,
+
+.login-icon:hover i {
+
+color: #c49744;
+
+}
+
+.login-icon i {
+
+color: white;
+
+}
+
+.nav-search-wrapper {
+
+display: flex;
+
+align-items: center;
+
+gap: 10px;
+
+flex-wrap: wrap;
+
+}
+
+.search-bar { display: flex; align-items: center; gap: 0; }
+
+.search-bar input { padding: 6px 10px; border: none; border-radius: 4px 0 0 4px; font-size: 1rem; }
+
+.search-bar button { background: #c49744; color: white; border: none; padding: 6px 10px; border-radius: 0 4px 4px 0; cursor: pointer; font-size: 1.1rem; transition: background 0.3s; }
+
+.search-bar button:hover { background: #a77c2b; }
+
+.welcome-hero {
+
+width: 80%;
+
+max-width: 1400px;
+
+height: 85vh;
+
+margin: 20px auto 40px;
+
+background-image: url('https://images.unsplash.com/photo-1558788353-f76d92427f16?auto=format&fit=crop&w=1600&q=80');
+
+background-size: cover;
+
+background-position: center;
+
+display: flex;
+
+align-items: center;
+
+justify-content: center;
+
+border-radius: 16px;
+
+overflow: hidden;
+
+}
+
+.hero-overlay {
+
+background-color: rgba(0, 0, 0, 0.4);
+
+width: 100%;
+
+height: 100%;
+
+display: flex;
+
+align-items: center;
+
+justify-content: center;
+
+}
+
+.hero-text {
+
+text-align: center;
+
+color: white;
+
+padding: 20px;
+
+}
+
+.hero-text h1 {
+
+font-size: 3.2rem;
+
+color: #c49744;
+
+margin-bottom: 20px;
+
+}
+
+.hero-text p {
+
+font-size: 1.4rem;
+
+margin-bottom: 30px;
+
+}
+
+.cta-button {
+
+background-color: #c49744;
+
+color: white;
+
+padding: 12px 28px;
+
+border-radius: 6px;
+
+text-decoration: none;
+
+font-weight: 700;
+
+font-size: 1.1rem;
+
+transition: background-color 0.3s;
+
+}
+
+.cta-button:hover {
+
+background-color: #a77c2b;
+
+}
+
+.adopt-cta {
+
+background-color: #f1e7db;
+
+padding: 50px 20px;
+
+text-align: center;
+
+}
+
+.cta-box {
+
+max-width: 600px;
+
+margin: 0 auto;
+
+background: #f7f2e9;
+
+border: 1px solid #d3c0a6;
+
+border-radius: 12px;
+
+padding: 40px;
+
+color: #4a3c31;
+
+box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+
+}
+
+.cta-box h2 {
+
+margin-bottom: 12px;
+
+color: #7a4a1c;
+
+font-size: 2rem;
+
+}
+
+.cta-box p {
+
+margin-bottom: 25px;
+
+font-size: 1.2rem;
+
+color: #5a4a38;
+
+}
+
+.steps-section {
+
+background-color: #f7f0e6;
+
+padding: 50px 20px;
+
+max-width: 1200px;
+
+margin: 50px auto;
+
+display: flex;
+
+gap: 40px;
+
+flex-wrap: wrap;
+
+color: #4a3c31;
+
+border-radius: 12px;
+
+}
+
+.steps-left {
+
+flex: 1 1 300px;
+
+font-weight: 700;
+
+font-size: 1.6rem;
+
+color: #7a4a1c;
+
+}
+
+.steps-right {
+
+flex: 2 1 600px;
+
+}
+
+.step {
+
+display: flex;
+
+align-items: flex-start;
+
+gap: 16px;
+
+margin-bottom: 32px;
+
+}
+
+.step i {
+
+font-size: 2rem;
+
+color: #7a4a1c;
+
+margin-top: 6px;
+
+}
+
+.step div h3 {
+
+margin: 0 0 6px 0;
+
+color: #7a4a1c;
+
+font-weight: 700;
+
+}
+
+.step div p {
+
+margin: 0;
+
+color: #5a4a38;
+
+font-size: 1rem;
+
+}
+
+.steps-right .cta-button {
+
+margin-top: 10px;
+
+font-size: 1rem;
+
+padding: 10px 22px;
+
+}
+
+footer {
+
+text-align: center;
+
+padding: 15px;
+
+background: #f7f2e9;
+
+color: #4a3c31;
+
+font-weight: 600;
+
+border-top: 2px solid #d3c0a6;
+
+margin-top: 30px;
+
+}
+
+@media (max-width: 768px) {
+
+.steps-section {
+
+flex-direction: column;
+
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+
+<i class="fas fa-paw logo-icon"></i>
+
+<span class="site-name">
+
+<span class="logo-fur">Fur</span><span class="logo-ever">Ever Home</span>
+
+</span>
+
+</div>
+
+<div class="header-right">
+
+<nav>
+
+<a href="index.html">Home</a>
+
+<a href="about.html">About</a>
+
+<a href="pets.html">Pets</a>
+
+<a href="adoption.html">Adopt</a>
+
+<a href="login.html" class="login-icon" aria-label="Login"><i class="fas fa-user"></i></a>
+
+</nav>
+
+<div class="nav-search-wrapper">
+
+<div class="search-bar">
+
+<input id="navSearchInput" type="text" placeholder="Search pets..." />
+
+<button id="navSearchBtn"><i class="fas fa-search"></i></button>
+
+</div>
+
+</div>
+
+</div>
+
+</header>
+
+<!-- Hero Section -->
+
+<section class="welcome-hero">
+
+<div class="hero-overlay">
+
+<div class="hero-text">
+
+<h1>Welcome to furEver Home</h1>
+
+<p>Adopt your new furry best friend today!</p>
+
+<a href="pets.html" class="cta-button">Browse Pets</a>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- Call to Action Section -->
+
+<section class="adopt-cta">
+
+<div class="cta-box">
+
+<h2>Ready to Adopt?</h2>
+
+<p>Sign up to unlock the full adoption journey!</p>
+
+<a href="login.html" class="cta-button">Sign Up Now</a>
+
+</div>
+
+</section>
+
+<!-- Steps Section -->
+
+<section class="steps-section">
+
+<div class="steps-left">
+
+<h2>Start your journey to pet parenthood with our step-by-step guide</h2>
+
+</div>
+
+<div class="steps-right">
+
+<div class="step">
+
+<i class="fas fa-search"></i>
+
+<div>
+
+<h3>Begin Your Pet Search</h3>
+
+<p>Browse from our vast network of shelters and rescues to find your perfect pet.</p>
+
+</div>
+
+</div>
+
+<div class="step">
+
+<i class="fas fa-handshake"></i>
+
+<div>
+
+<h3>Get Ready to Meet the Pet</h3>
+
+<p>View shelter details and prepare your questions before your visit.</p>
+
+</div>
+
+</div>
+
+<div class="step">
+
+<i class="fas fa-check-circle"></i>
+
+<div>
+
+<h3>Finalize Your Adoption</h3>
+
+<p>Use our checklist to prepare for bringing your new family member home.</p>
+
+</div>
+
+</div>
+
+<a href="adoption-checklist.html" class="cta-button">View Our Adoption Checklist</a>
+
+</div>
+
+</section>
+
+<!-- Footer -->
+
+<footer>
+
+© 2025 furEver Home. All rights reserved.
+
+</footer>
+
+<script>
+
+document.getElementById("navSearchBtn").addEventListener("click", function () {
+
+const query = document.getElementById("navSearchInput").value.trim();
+
+if (query) {
+
+window.location.href = `pets.html?search=${encodeURIComponent(query)}`;
+
+}
+
+});
+
+document.getElementById("navSearchInput").addEventListener("keydown", function (event) {
+
+if (event.key === "Enter") {
+
+document.getElementById("navSearchBtn").click();
+
+}
+
+});
+
+</script>
+
+</body>
+
+</html>

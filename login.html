@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>Login / Signup – furEver Home</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+<style>
+
+body {
+
+font-family: Arial, sans-serif;
+
+background-color: #fffaf4;
+
+margin: 0;
+
+padding: 0;
+
+display: flex;
+
+flex-direction: column;
+
+min-height: 100vh;
+
+}
+
+header {
+
+background-color: #7a4a1c;
+
+box-shadow: 0 2px 5px rgba(107, 73, 32, 0.3);
+
+padding: 15px 30px;
+
+display: flex;
+
+justify-content: space-between;
+
+align-items: center;
+
+color: #fff9f0;
+
+position: sticky;
+
+top: 0;
+
+z-index: 10;
+
+}
+
+header a {
+
+color: #fff9f0;
+
+text-decoration: none;
+
+margin-left: 20px;
+
+font-weight: 600;
+
+}
+
+.logo-icon {
+
+color: #c49744;
+
+font-size: 1.8rem;
+
+margin-right: 10px;
+
+}
+
+.site-name {
+
+font-weight: 700;
+
+font-size: 1.3rem;
+
+color: white;
+
+}
+
+.logo-fur { color: #c49744; }
+
+.page-wrapper {
+
+flex: 1;
+
+display: flex;
+
+justify-content: center; /* vertical center */
+
+align-items: center; /* horizontal center */
+
+}
+
+.auth-container {
+
+width: 100%;
+
+max-width: 500px;
+
+background: #fffef9;
+
+padding: 2rem 2.5rem;
+
+border-radius: 12px;
+
+box-shadow: 0 4px 12px rgba(90, 62, 27, 0.15);
+
+}
+
+.tabs {
+
+display: flex;
+
+margin-bottom: 1.5rem;
+
+border-radius: 8px;
+
+overflow: hidden;
+
+border: 2px solid #a17649;
+
+background-color: #f7f2e9;
+
+}
+
+.tabs button {
+
+flex: 1;
+
+padding: 1rem 0;
+
+background: #f7f2e9;
+
+border: none;
+
+cursor: pointer;
+
+font-weight: 700;
+
+color: #7a4a1c;
+
+font-size: 1.1rem;
+
+}
+
+.tabs button.active {
+
+background-color: #a17649;
+
+color: white;
+
+}
+
+form {
+
+display: flex;
+
+flex-direction: column;
+
+}
+
+input {
+
+padding: 1rem;
+
+margin-top: 1rem;
+
+border-radius: 6px;
+
+border: 2px solid #c49744;
+
+font-size: 1.05rem;
+
+}
+
+input:focus {
+
+border-color: #7a4a1c;
+
+outline: none;
+
+box-shadow: 0 0 4px #7a4a1caa;
+
+}
+
+button.submit {
+
+background-color: #a17649;
+
+color: white;
+
+font-weight: 700;
+
+cursor: pointer;
+
+margin-top: 2rem;
+
+padding: 1rem;
+
+font-size: 1.1rem;
+
+border: none;
+
+border-radius: 6px;
+
+}
+
+.error {
+
+color: #d84315;
+
+margin-top: 0.5rem;
+
+font-size: 0.9rem;
+
+min-height: 20px;
+
+}
+
+.tab-content {
+
+display: none;
+
+}
+
+.tab-content.active {
+
+display: block;
+
+}
+
+.logout-section {
+
+text-align: center;
+
+margin-top: 2rem;
+
+}
+
+.logout-section button {
+
+background: #c44125;
+
+color: #fff;
+
+padding: 0.6rem 1.2rem;
+
+border: none;
+
+border-radius: 6px;
+
+font-size: 1rem;
+
+font-weight: bold;
+
+cursor: pointer;
+
+}
+
+footer {
+
+text-align: center;
+
+padding: 15px;
+
+background: #f7f2e9;
+
+color: #4a3c31;
+
+font-weight: 600;
+
+border-top: 2px solid #d3c0a6;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+
+<i class="fas fa-paw logo-icon"></i>
+
+<span class="site-name"><span class="logo-fur">Fur</span><span>Ever Home</span></span>
+
+</div>
+
+<nav>
+
+<a href="index.html">Home</a>
+
+<a href="about.html">About</a>
+
+<a href="pets.html">Pets</a>
+
+<a href="adoption.html">Adopt</a>
+
+<a href="login.html"><i class="fas fa-user"></i></a>
+
+</nav>
+
+</header>
+
+<div class="page-wrapper">
+
+<div class="auth-container">
+
+<div class="tabs">
+
+<button id="signupTab" onclick="switchTab('signup')">Sign Up</button>
+
+<button id="loginTab" onclick="switchTab('login')">Login</button>
+
+</div>
+
+<div id="signupForm" class="tab-content">
+
+<form>
+
+<input type="text" id="signupName" placeholder="Full Name" required />
+
+<input type="email" id="signupEmail" placeholder="Gmail Address" required />
+
+<input type="password" id="signupPassword" placeholder="Password (min 8 chars)" required minlength="8" />
+
+<input type="password" id="signupConfirmPassword" placeholder="Confirm Password" required />
+
+<div id="signupError" class="error"></div>
+
+<button class="submit" type="submit">Sign Up</button>
+
+</form>
+
+</div>
+
+<div id="loginForm" class="tab-content">
+
+<form>
+
+<input type="email" id="loginEmail" placeholder="Gmail Address" required />
+
+<input type="password" id="loginPassword" placeholder="Password" required minlength="8" />
+
+<div id="loginError" class="error"></div>
+
+<button class="submit" type="submit">Login</button>
+
+</form>
+
+</div>
+
+<div class="logout-section" id="logoutSection" style="display: none;">
+
+<p>You are logged in as <span id="loggedInUser"></span></p>
+
+<button onclick="logout()">Logout</button>
+
+</div>
+
+</div>
+
+</div>
+
+<footer>© 2025 furEver Home. All rights reserved.</footer>
+
+<script>
+
+let currentUser = null;
+
+const demoUser = { email: "demo\@gmail.com", password: "password123" };
+
+function switchTab(tab) {
+
+document.querySelectorAll('.tabs button').forEach(btn => btn.classList.remove('active'));
+
+document.querySelectorAll('.tab-content').forEach(tc => tc.classList.remove('active'));
+
+document.getElementById(tab + 'Tab').classList.add('active');
+
+document.getElementById(tab + 'Form').classList.add('active');
+
+document.getElementById('signupError').textContent = '';
+
+document.getElementById('loginError').textContent = '';
+
+}
+
+function validateEmail(email) {
+
+return /^[a-zA-Z0-9.\_%+-]+\@gmail\\\.com$/.test(email);
+
+}
+
+function validateForm(e, type) {
+
+e.preventDefault();
+
+const email = document.getElementById(type + 'Email').value.trim();
+
+const password = document.getElementById(type + 'Password').value;
+
+const error = document.getElementById(type + 'Error');
+
+error.textContent = '';
+
+if (!validateEmail(email)) { error.textContent = 'Please use a valid Gmail address.'; return; }
+
+if (password.length < 8) { error.textContent = 'Password must be at least 8 characters long.'; return; }
+
+if (type === 'signup') {
+
+const confirm = document.getElementById('signupConfirmPassword').value;
+
+if (password !== confirm) { error.textContent = 'Passwords do not match.'; return; }
+
+alert('Signup successful! You can now log in.');
+
+switchTab('login');
+
+}
+
+if (type === 'login') {
+
+if (email !== demoUser.email || password !== demoUser.password) {
+
+error.textContent = 'Incorrect email or password.';
+
+return;
+
+}
+
+currentUser = email;
+
+document.getElementById('loggedInUser').textContent = currentUser;
+
+document.getElementById('loginForm').style.display = 'none';
+
+document.getElementById('signupForm').style.display = 'none';
+
+document.querySelector('.tabs').style.display = 'none';
+
+document.getElementById('logoutSection').style.display = 'block';
+
+}
+
+}
+
+function logout() {
+
+currentUser = null;
+
+document.getElementById('logoutSection').style.display = 'none';
+
+document.querySelector('.tabs').style.display = 'flex';
+
+document.getElementById('loginForm').style.display = 'none';
+
+document.getElementById('signupForm').style.display = 'block';
+
+switchTab('signup');
+
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+
+switchTab('signup');
+
+document.querySelector('#signupForm form').onsubmit = e => validateForm(e, 'signup');
+
+document.querySelector('#loginForm form').onsubmit = e => validateForm(e, 'login');
+
+});
+
+</script>
+
+</body>
+
+</html>

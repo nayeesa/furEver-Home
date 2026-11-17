@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8"/>
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>About – furEver Home</title>
+
+<link rel="stylesheet" href="styles.css"/>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+<style>
+
+body {
+
+font-family: Arial, sans-serif;
+
+background-color: #fffaf4;
+
+margin: 0;
+
+padding: 0;
+
+}
+
+header {
+
+background-color: #7a4a1c;
+
+box-shadow: 0 2px 5px rgba(107, 73, 32, 0.3);
+
+padding: 15px 30px;
+
+display: flex;
+
+justify-content: space-between;
+
+align-items: center;
+
+color: #fff9f0;
+
+position: sticky;
+
+top: 0;
+
+z-index: 10;
+
+}
+
+header a {
+
+color: #fff9f0;
+
+text-decoration: none;
+
+margin-left: 20px;
+
+font-weight: 600;
+
+}
+
+.logo-icon {
+
+color: #c49744;
+
+font-size: 1.8rem;
+
+margin-right: 10px;
+
+}
+
+.site-name {
+
+font-weight: 700;
+
+font-size: 1.3rem;
+
+color: white;
+
+}
+
+.logo-fur {
+
+color: #c49744;
+
+}
+
+.about-image-section {
+
+max-width: 900px;
+
+margin: 30px auto;
+
+padding: 0 20px;
+
+}
+
+.about-image-section img {
+
+width: 100%;
+
+max-height: 400px;
+
+object-fit: cover;
+
+border-radius: 10px;
+
+box-shadow: 0 4px 12px rgba(90, 62, 27, 0.15);
+
+}
+
+section {
+
+max-width: 900px;
+
+margin: 30px auto;
+
+padding: 20px;
+
+border-radius: 12px;
+
+box-shadow: 0 3px 8px rgba(90, 62, 27, 0.1);
+
+background-color: #fffaf4;
+
+color: #5a3e1b;
+
+}
+
+section h2 {
+
+color: #a17649;
+
+font-weight: 700;
+
+text-align: center;
+
+}
+
+section p, section ul {
+
+font-size: 1.1rem;
+
+line-height: 1.6;
+
+max-width: 700px;
+
+margin: 0 auto;
+
+}
+
+.why-us-list {
+
+list-style: none;
+
+padding: 0;
+
+text-align: center;
+
+}
+
+.important-notice {
+
+background-color: #c49744;
+
+color: #5a3e1b;
+
+font-weight: 600;
+
+text-align: center;
+
+padding: 15px;
+
+border-radius: 12px;
+
+box-shadow: 0 2px 6px rgba(161, 120, 73, 0.4);
+
+margin: 40px auto;
+
+max-width: 900px;
+
+}
+
+.intro-section {
+
+background-color: #fffaf4;
+
+box-shadow: 0 3px 10px rgba(161, 120, 73, 0.1);
+
+padding: 30px 20px;
+
+border-radius: 12px;
+
+max-width: 900px;
+
+margin: 40px auto;
+
+color: #6b4f1d;
+
+font-size: 1.2rem;
+
+text-align: center;
+
+}
+
+.stats-grid {
+
+display: grid;
+
+grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+
+background-color: #7a4a1c;
+
+text-align: center;
+
+padding: 40px 20px;
+
+color: white;
+
+gap: 30px;
+
+}
+
+.stats-grid div {
+
+display: flex;
+
+flex-direction: column;
+
+justify-content: center;
+
+align-items: center;
+
+font-size: 1.2rem;
+
+font-weight: bold;
+
+}
+
+.stats-grid div span {
+
+font-size: 2rem;
+
+margin-top: 30px;
+
+}
+
+/* Success Stories Slider */
+
+.success-stories {
+
+background-color: #7a4a1c;
+
+padding: 40px 20px;
+
+border-radius: 12px;
+
+color: white;
+
+text-align: center;
+
+margin-top: 50px;
+
+}
+
+.success-stories h2 { color: white; margin-bottom: 20px; }
+
+.slider { position: relative; overflow: hidden; max-width: 900px; margin: 0 auto; }
+
+.slides { display: flex; transition: transform 0.5s ease; }
+
+.slide { min-width: 100%; box-sizing: border-box; padding: 20px; }
+
+.slide img { max-width: 100%; max-height: 300px; border-radius: 10px; margin-bottom: 15px; box-shadow: 0 3px 12px rgba(0,0,0,0.2); }
+
+.slide p { font-size: 1.1rem; color: #fff; margin: 0 auto; max-width: 800px; }
+
+.slider-buttons { margin-top: 20px; display: flex; justify-content: center; gap: 10px; }
+
+.slider-buttons button { background: #fff; border: none; width: 14px; height: 14px; border-radius: 50%; cursor: pointer; opacity: .6; transition: opacity .3s; }
+
+.slider-buttons button.active, .slider-buttons button:hover { opacity: 1; }
+
+.nav-arrows {
+
+position: absolute;
+
+top: 50%;
+
+width: 100%;
+
+display: flex;
+
+justify-content: space-between;
+
+transform: translateY(-50%);
+
+}
+
+.nav-arrows button {
+
+background: rgba(255,255,255,0.7);
+
+border: none;
+
+padding: 10px;
+
+border-radius: 50%;
+
+cursor: pointer;
+
+font-size: 1.2rem;
+
+color: #a17649;
+
+transition: background .3s;
+
+}
+
+.nav-arrows button:hover { background: rgba(255,255,255,1); }
+
+footer {
+
+text-align: center;
+
+padding: 15px;
+
+background: #f7f2e9;
+
+color: #4a3c31;
+
+font-weight: 600;
+
+border-top: 2px solid #d3c0a6;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+
+<i class="fas fa-paw logo-icon"></i>
+
+<span class="site-name"><span class="logo-fur">Fur</span><span>Ever Home</span></span>
+
+</div>
+
+<nav>
+
+<a href="index.html">Home</a>
+
+<a href="about.html">About</a>
+
+<a href="pets.html">Pets</a>
+
+<a href="adoption.html">Adopt</a>
+
+<a href="login.html"><i class="fas fa-user"></i></a>
+
+</nav>
+
+</header>
+
+<section class="about-image-section">
+
+<img src="https://images.unsplash.com/photo-1507146426996-ef05306b995a?auto=format&fit=crop&w=1200&q=80" alt="Cozy adopted pet"/>
+
+</section>
+
+<section class="intro-section">
+
+<p>At furEver Home, we’re passionate about connecting loving families with rescued cats and dogs. Our mission is to create happy endings through a smooth and caring adoption experience. We believe every pet deserves a family, and we’re here to make that happen by providing a trusted, user‑friendly platform for pet adoption.</p>
+
+</section>
+
+<!-- Notice and other sections unchanged -->
+
+<section class="important-notice">
+
+<p><strong>Important Notice:</strong> FurEver Home is strictly an adoption platform and is not intended for selling pets. Our purpose is to help pets find loving, caring homes where they can thrive, and we ask all users to respect this mission by refraining from using the site for commercial pet trading.</p>
+
+</section>
+
+<section>
+
+<h2>Who We Are</h2>
+
+<p>furEver Home connects rescued cats and dogs with loving families through a simple, transparent process.</p>
+
+</section>
+
+<section>
+
+<h2>Why Us</h2>
+
+<ul class="why-us-list">
+
+<li>Trusted shelter partners</li>
+
+<li>Easy online process</li>
+
+<li>Continued support after adoption</li>
+
+</ul>
+
+</section>
+
+<section>
+
+<h2>How It Works</h2>
+
+<ul class="why-us-list">
+
+<li>Browse our trusted shelter partners’ available pets.</li>
+
+<li>Use our easy online application to start the adoption process.</li>
+
+<li>Meet your potential new family member and finalize the adoption.</li>
+
+<li>Receive ongoing support and resources after adoption.</li>
+
+</ul>
+
+</section>
+
+<section>
+
+<h2>Our Promise</h2>
+
+<p>Every pet gets a second chance at a happy life in a caring home.</p>
+
+</section>
+
+<div class="stats-grid">
+
+<div><span>30+</span> Pets Adopted</div>
+
+<div><span>15+</span> Partner Shelters</div>
+
+<div><span>30+</span> Happy Families</div>
+
+<div><span>5+</span> Years Experience</div>
+
+</div>
+
+<section class="success-stories">
+
+<h2>Success Stories</h2>
+
+<div class="slider" id="slider">
+
+<div class="slides" id="slides">
+
+<div class="slide">
+
+<img src="https://images.pexels.com/photos/3860306/pexels-photo-3860306.jpeg" alt="Lily & family"/>
+
+<p>Meet Lily, once a stray, now the heart of the Karim family. Her journey from a rescue shelter to a forever home is what furEver Home is all about.</p>
+
+</div>
+
+<div class="slide">
+
+<img src="https://images.unsplash.com/photo-1616322494008-d2c1712bbe50?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fGRvYmVybWFufGVufDB8fDB8fHww" alt="Bruno & family"/>
+
+<p>Once a long-term shelter resident, Bruno is now the Ahmeds' energetic protector—his playful spirit brings warmth and laughter to their home.</p>
+
+</div>
+
+<div class="slide">
+
+<img src="https://images.unsplash.com/photo-1625060241508-22488e1e9264?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fHRhYmJ5JTIwY2F0fGVufDB8fDB8fHww" alt="Nala & family"/>
+
+<p>Rescued last year, Nala’s journey from fear to love has been incredible. With the Chowdhurys, she’s finally home.</p>
+
+</div>
+
+</div>
+
+<div class="nav-arrows">
+
+<button id="prevBtn">&#8249;</button>
+
+<button id="nextBtn">&#8250;</button>
+
+</div>
+
+</div>
+
+<div class="slider-buttons" id="dots"></div>
+
+</section>
+
+<footer>&copy; 2025 furEver Home. All rights reserved.</footer>
+
+<script>
+
+(function(){
+
+const slides = document.getElementById('slides');
+
+const dots = document.getElementById('dots');
+
+const prevBtn = document.getElementById('prevBtn');
+
+const nextBtn = document.getElementById('nextBtn');
+
+const total = slides.children.length;
+
+let idx = 0;
+
+for(let i = 0; i < total; i++) {
+
+const btn = document.createElement('button');
+
+btn.addEventListener('click', () => goTo(i));
+
+dots.appendChild(btn);
+
+}
+
+const dotBtns = dots.querySelectorAll('button');
+
+function update() {
+
+slides.style.transform = `translateX(-${idx * 100}%)`;
+
+dotBtns.forEach((b, i) => b.classList.toggle('active', i === idx));
+
+}
+
+function goTo(i) {
+
+idx = (i + total) % total;
+
+update();
+
+}
+
+prevBtn.addEventListener('click', () => goTo(idx - 1));
+
+nextBtn.addEventListener('click', () => goTo(idx + 1));
+
+goTo(0);
+
+})();
+
+</script>
+
+</body>
+
+</html>

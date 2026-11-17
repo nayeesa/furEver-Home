@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+<title>Pets – furEver Home</title>
+
+<link rel="stylesheet" href="styles.css" />
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+<style>
+
+/* Pet cards */
+
+.pets-grid { display: flex; flex-wrap: wrap; gap: 30px; justify-content: center; padding: 30px; }
+
+.pet-card { background: #fffaf4; border: 1px solid #d3c0a6; border-radius: 12px; width: 300px; cursor: pointer; transition: transform 0.2s; }
+
+.pet-card:hover { transform: translateY(-5px); }
+
+.pet-card img { width: 100%; height: 220px; object-fit: cover; border-radius: 12px 12px 0 0; }
+
+.pet-info { padding: 12px; }
+
+.pet-info h3 { margin-bottom: 8px; color: #4a3c31; }
+
+.pet-info p { margin: 4px 0; color: #5a4a38; }
+
+/* Modal backdrop */
+
+.modal {
+
+position: fixed;
+
+top: 0; left: 0;
+
+width: 100%; height: 100%;
+
+background: rgba(0,0,0,0.6);
+
+display: none;
+
+justify-content: center;
+
+align-items: center;
+
+z-index: 1000;
+
+}
+
+/* Modal box */
+
+.modal-content {
+
+background: #fffaf4;
+
+padding: 40px;
+
+border-radius: 12px;
+
+text-align: left;
+
+width: 900%;
+
+max-width: 1200px;
+
+height: 90vh; /* increased height */
+
+overflow-y: auto; /* scroll if content overflows */
+
+position: relative;
+
+display: flex;
+
+flex-wrap: wrap;
+
+gap: 30px;
+
+}
+
+.modal-content img {
+
+width: 580px;
+
+height: 680px;
+
+object-fit: cover;
+
+border-radius: 20px;
+
+}
+
+.modal-details {
+
+flex: 1;
+
+min-width: 300px;
+
+}
+
+.modal-content h3 {
+
+margin-top: 0;
+
+color: #4a3c31;
+
+font-size: 4.8rem;
+
+}
+
+.modal-content p {
+
+margin: 8px 0;
+
+color: #5a4a38;
+
+font-size: 2.2rem;
+
+}
+
+.close-btn {
+
+position: absolute;
+
+top: 12px; right: 16px;
+
+font-size: 2rem;
+
+cursor: pointer;
+
+color: #4a3c31;
+
+}
+
+/* Header styles unchanged – */
+
+header {
+
+display: flex;
+
+justify-content: space-between;
+
+align-items: center;
+
+background: #7a4a1c;
+
+color: #fff;
+
+padding: 10px 30px;
+
+flex-wrap: wrap;
+
+}
+
+.logo { display: flex; align-items: center; font-size: 1.8rem; font-weight: bold; }
+
+.logo-icon { margin-right: 10px; color: #c49744; }
+
+.site-name .logo-fur { color: #c49744; }
+
+.site-name .logo-everhome { color: white; }
+
+nav { display: flex; gap: 5px; align-items: center; flex-wrap: wrap; }
+
+nav a { color: white; text-decoration: none; font-weight: 500; transition: color 0.3s; }
+
+nav a:hover { color: #c49744; }
+
+.search-bar { display: flex; align-items: center; }
+
+.search-bar input { padding: 6px 10px; border: none; border-radius: 4px 0 0 4px; font-size: 1rem;}
+
+.search-bar button { background: #c49744; color: white; border: none; padding: 6px 10px; border-radius: 0 4px 4px 0; cursor: pointer; font-size: 1rem; transition: background 0.3s; }
+
+.search-bar button:hover { background: #a77c2b; }
+
+html, body {
+
+margin: 0;
+
+padding: 0;
+
+height: 100%;
+
+display: flex;
+
+flex-direction: column;
+
+}
+
+main {
+
+flex: 1;
+
+}
+
+footer {
+
+margin-top: auto;
+
+text-align: center;
+
+padding: 15px;
+
+background: #f7f2e9;
+
+color: #4a3c31;
+
+font-weight: 600;
+
+border-top: 2px solid #d3c0a6;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+
+<i class="fas fa-paw logo-icon"></i>
+
+<span class="site-name"><span class="logo-fur">Fur</span><span class="logo-everhome">Ever Home</span></span>
+
+</div>
+
+<nav>
+
+<a href="index.html">Home</a>
+
+<a href="about.html">About</a>
+
+<a href="pets.html">Pets</a>
+
+<a href="adoption.html">Adopt</a>
+
+<a href="login.html"><i class="fas fa-user"></i></a>
+
+<div class="search-bar">
+
+<input id="navSearchInput" type="text" placeholder="Search pets..." />
+
+<button id="navSearchBtn"><i class="fas fa-search"></i></button>
+
+</div>
+
+</nav>
+
+</header>
+
+<main>
+
+<h2 style="text-align:center; margin-top:20px;">Available Pets</h2>
+
+<div class="filter-bar" style="text-align:center; margin:20px;">
+
+<select id="filter-type">
+
+<option value="all">All Types</option>
+
+<option value="Dog">Dog</option>
+
+<option value="Cat">Cat</option>
+
+<option value="Rabbit">Rabbit</option>
+
+</select>
+
+<input id="filterSearchInput" type="text" placeholder="Search pets..." style="padding:6px; margin-left:10px;">
+
+<button id="filterSearchBtn" style="padding:8px 18px; background:#d18b47; border:none; color:#fff; cursor:pointer;">Search</button>
+
+</div>
+
+<div class="pets-grid" id="pets-grid"></div>
+
+</main>
+
+<!-- Modal -->
+
+<div id="petModal" class="modal">
+
+<div class="modal-content">
+
+<span class="close-btn">&times;</span>
+
+<img id="modalImg" src="" alt="">
+
+<div class="modal-details">
+
+<h3 id="modalName"></h3>
+
+<p><strong>Type:</strong> <span id="modalType"></span></p>
+
+<p><strong>Breed:</strong> <span id="modalBreed"></span></p>
+
+<p><strong>Age:</strong> <span id="modalAge"></span></p>
+
+<p><strong>Gender:</strong> <span id="modalGender"></span></p>
+
+<p><strong>Vaccinated:</strong> <span id="modalVaccinated"></span></p>
+
+<p><strong>Weight:</strong> <span id="modalWeight"></span></p>
+
+<p><strong>Personality:</strong> <span id="modalPersonality"></span></p>
+
+<p><strong>Status:</strong> <span id="modalStatus"></span></p>
+
+</div>
+
+</div>
+
+</div>
+
+<footer>&copy; 2025 furEver Home. All rights reserved.</footer>
+
+<script>
+
+const pets = [
+
+{ name:"Max", type:"Dog", age:"2 Years", breed:"Beagle", gender:"Male", vaccinated:"Yes", weight:"15 kg", personality:"Friendly", status:"Rescued", image:"https://cdn2.thedogapi.com/images/Syd4xxqEm_1280.jpg" },
+
+{ name:"Luna", type:"Cat", age:"3 Years", breed:"Persian", gender:"Female", vaccinated:"Yes", weight:"4.5 kg", personality:"Gentle", status:"Former Owner", image:"https://images.unsplash.com/photo-1568035105640-89538ccccd24?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGNhdCUyMHBlcnNpYW58ZW58MHx8MHx8fDA%3D" },
+
+{ name:"Fluffy", type:"Rabbit", age:"1 Year", breed:"Lop", gender:"Male", vaccinated:"No", weight:"2.3 kg", personality:"Playful", status:"Rehome", image:"https://images.unsplash.com/photo-1585110396000-c9ffd4e4b308?w=800" },
+
+{ name:"Whiskers", type:"Cat", age:"2 Years", breed:"Siamese", gender:"Male", vaccinated:"Yes", weight:"5 kg", personality:"Curious", status:"Rescued", image:"https://images.unsplash.com/photo-1666181839388-2623c19d935e?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTF8fGNhdCUyMHNpYW1lc2V8ZW58MHx8MHx8fDA%3D" },
+
+{ name:"Marshmallow", type:"Dog", age:"3 Years", breed:"Golden Retriever", gender:"Female", vaccinated:"Yes", weight:"28 kg", personality:"Loyal", status:"Former Owner", image:"https://images.unsplash.com/photo-1633722715463-d30f4f325e24?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Z29sZGVuJTIwcmV0cmlldmVyfGVufDB8fDB8fHww" },
+
+{ name:"Coco", type:"Dog", age:"2 Years", breed:"Toy Poodle", gender:"Female", vaccinated:"Yes", weight:"6 kg", personality:"Smart", status:"Rehome", image:"https://cdn2.thedogapi.com/images/rJFJVxc4m_1280.jpg" },
+
+{ name:"Nibbles", type:"Rabbit", age:"2 Years", breed:"Rex", gender:"Male", vaccinated:"No", weight:"2.8 kg", personality:"Shy", status:"Rescued", image:"https://plus.unsplash.com/premium_photo-1693756973030-b521b522afb7?w=800" },
+
+{ name:"Buddy", type:"Dog", age:"1 Year", breed:"German Shepherd", gender:"Male", vaccinated:"Yes", weight:"30 kg", personality:"Protective", status:"Rehome", image:"https://images.unsplash.com/photo-1685963154011-dc88c0a06cbd?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8ODB8fGdlcm1hbiUyMHNoZXBoYXJkfGVufDB8fDB8fHww" },
+
+{ name:"Milo", type:"Cat", age:"4 Years", breed:"Snowshoe", gender:"Male", vaccinated:"Yes", weight:"5.2 kg", personality:"Affectionate", status:"Former Owner", image:"https://images.unsplash.com/photo-1645996598279-4381636a4155?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8Y2F0JTIwc25vd3Nob2V8ZW58MHx8MHx8fDA%3D" },
+
+{ name:"Lucy", type:"Dog", age:"4 Years", breed:"Spitz", gender:"Female", vaccinated:"Yes", weight:"9 kg", personality:"Energetic", status:"Rescued", image:"https://cdn2.thedogapi.com/images/Bymjyec4m_1280.jpg" },
+
+{ name:"Leo", type:"Cat", age:"2 Years", breed:"Tabby", gender:"Male", vaccinated:"Yes", weight:"4.9 kg", personality:"Calm", status:"Rehome", image:"https://images.unsplash.com/photo-1667518158890-0a6cf60de601?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NjR8fGNhdCUyMHRhYmJ5fGVufDB8fDB8fHww" }
+
+];
+
+const grid = document.getElementById("pets-grid");
+
+const filterType = document.getElementById("filter-type");
+
+const navInput = document.getElementById("navSearchInput");
+
+const navBtn = document.getElementById("navSearchBtn");
+
+const filterInput = document.getElementById("filterSearchInput");
+
+const filterBtn = document.getElementById("filterSearchBtn");
+
+const modal = document.getElementById("petModal");
+
+const closeBtn = document.querySelector(".close-btn");
+
+// Get search term from URL
+
+const urlParams = new URLSearchParams(window.location.search);
+
+const urlSearch = urlParams.get("search");
+
+if (urlSearch) {
+
+navInput.value = urlSearch;
+
+filterInput.value = urlSearch;
+
+}
+
+function renderPets() {
+
+grid.innerHTML = "";
+
+const type = filterType.value;
+
+const term = filterInput.value.trim().toLowerCase();
+
+pets.forEach((pet, i) => {
+
+if (type !== "all" && pet.type !== type) return;
+
+if (term && ![pet.name, pet.breed, pet.type].some(x => x.toLowerCase().includes(term))) return;
+
+const card = document.createElement("div");
+
+card.className = "pet-card";
+
+card.innerHTML = `
+
+<img src="${pet.image}" alt="${pet.name}">
+
+<div class="pet-info">
+
+<h3>${pet.name}</h3>
+
+<p>Age: ${pet.age}</p>
+
+<p>Breed: ${pet.breed}</p>
+
+</div>`;
+
+card.onclick = () => openModal(i);
+
+grid.appendChild(card);
+
+});
+
+if (!grid.innerHTML) {
+
+grid.innerHTML = "<p style='text-align:center;'>No pets found.</p>";
+
+}
+
+}
+
+function openModal(i) {
+
+const pet = pets[i];
+
+modal.style.display = "flex";
+
+document.getElementById("modalImg").src = pet.image;
+
+document.getElementById("modalName").textContent = pet.name;
+
+document.getElementById("modalType").textContent = pet.type;
+
+document.getElementById("modalBreed").textContent = pet.breed;
+
+document.getElementById("modalAge").textContent = pet.age;
+
+document.getElementById("modalGender").textContent = pet.gender;
+
+document.getElementById("modalVaccinated").textContent = pet.vaccinated;
+
+document.getElementById("modalWeight").textContent = pet.weight;
+
+document.getElementById("modalPersonality").textContent = pet.personality;
+
+document.getElementById("modalStatus").textContent = pet.status;
+
+}
+
+closeBtn.onclick = () => modal.style.display = "none";
+
+window.onclick = e => { if (e.target === modal) modal.style.display = "none"; };
+
+filterBtn.addEventListener("click", renderPets);
+
+filterType.addEventListener("change", renderPets);
+
+filterInput.addEventListener("keydown", e => { if (e.key === "Enter") renderPets(); });
+
+navBtn.addEventListener("click", () => {
+
+filterInput.value = navInput.value;
+
+renderPets();
+
+});
+
+renderPets();
+
+</script>
+
+</body>
+
+</html>

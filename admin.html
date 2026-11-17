@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<title>Admin Panel – furEver Home</title>
+
+<link rel="stylesheet" href="styles.css" />
+
+<link
+
+rel="stylesheet"
+
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+
+/>
+
+<style>
+
+/* ... same styles as before ... */
+
+body {
+
+font-family: Arial, sans-serif;
+
+background-color: #fffaf4;
+
+margin: 0;
+
+padding: 0;
+
+display: flex;
+
+flex-direction: column;
+
+min-height: 100vh;
+
+}
+
+header {
+
+display: flex;
+
+justify-content: space-between;
+
+align-items: center;
+
+flex-wrap: wrap;
+
+background-color: #7a4a1c;
+
+color: white;
+
+padding: 15px 30px;
+
+}
+
+.logo {
+
+display: flex;
+
+align-items: center;
+
+font-size: 1.8rem;
+
+font-weight: bold;
+
+}
+
+.logo-icon {
+
+margin-right: 10px;
+
+color: #c49744;
+
+}
+
+.site-name .logo-fur {
+
+color: #c49744;
+
+}
+
+.site-name .logo-ever {
+
+color: white;
+
+}
+
+nav {
+
+display: flex;
+
+gap: 20px;
+
+}
+
+nav a {
+
+color: white;
+
+text-decoration: none;
+
+font-weight: 500;
+
+transition: color 0.3s;
+
+}
+
+nav a:hover,
+
+nav a i:hover {
+
+color: #c49744;
+
+}
+
+main.admin-container {
+
+padding: 40px 20px;
+
+max-width: 900px;
+
+margin: 0 auto;
+
+text-align: left;
+
+flex-grow: 1;
+
+}
+
+h2 {
+
+text-align: center;
+
+color: #7a4a1c;
+
+margin-bottom: 20px;
+
+}
+
+.admin-section {
+
+margin: 30px 0;
+
+padding: 20px;
+
+background: #fdf4e4;
+
+border-radius: 12px;
+
+box-shadow: 0 0 10px rgba(189, 157, 106, 0.2);
+
+}
+
+.admin-section h3 {
+
+margin-top: 0;
+
+color: #7a4a1c;
+
+margin-bottom: 15px;
+
+}
+
+.admin-entry {
+
+background: #fffaf1;
+
+padding: 15px;
+
+margin-bottom: 15px;
+
+border-left: 5px solid #c49744;
+
+border-radius: 8px;
+
+display: flex;
+
+align-items: center;
+
+justify-content: space-between;
+
+gap: 15px;
+
+flex-wrap: wrap;
+
+}
+
+.admin-entry h4 {
+
+margin: 0 10px 0 0;
+
+flex: 1 1 200px;
+
+}
+
+.admin-entry p {
+
+flex: 2 1 300px;
+
+margin: 0;
+
+font-weight: 600;
+
+}
+
+.admin-entry img {
+
+max-width: 100px;
+
+border-radius: 8px;
+
+flex-shrink: 0;
+
+}
+
+.admin-entry label {
+
+flex-shrink: 0;
+
+cursor: pointer;
+
+user-select: none;
+
+font-weight: 600;
+
+}
+
+.admin-entry button {
+
+background: #7a4a1c;
+
+color: white;
+
+border: none;
+
+padding: 6px 12px;
+
+border-radius: 8px;
+
+cursor: pointer;
+
+flex-shrink: 0;
+
+font-size: 0.9rem;
+
+}
+
+.admin-entry button:hover {
+
+background: #5e3614;
+
+}
+
+form#addPetForm {
+
+display: flex;
+
+flex-wrap: wrap;
+
+gap: 10px;
+
+margin-bottom: 20px;
+
+align-items: center;
+
+justify-content: start;
+
+}
+
+form#addPetForm input {
+
+padding: 8px;
+
+border: 1px solid #ccc;
+
+border-radius: 8px;
+
+flex: 1 1 180px;
+
+font-size: 1rem;
+
+}
+
+form#addPetForm button {
+
+background-color: #7a4a1c;
+
+color: white;
+
+padding: 10px 18px;
+
+border-radius: 8px;
+
+font-weight: 700;
+
+font-size: 1rem;
+
+border: none;
+
+cursor: pointer;
+
+flex-shrink: 0;
+
+}
+
+form#addPetForm button:hover {
+
+background-color: #5e3614;
+
+}
+
+footer {
+
+background: #f7f2e9;
+
+color: #4a3c31;
+
+font-weight: 600;
+
+border-top: 2px solid #d3c0a6;
+
+text-align: center;
+
+padding: 15px;
+
+margin-top: auto;
+
+}
+
+/* Access denied message style */
+
+\#accessDenied {
+
+text-align: center;
+
+color: #b33415;
+
+margin-top: 50px;
+
+font-weight: 700;
+
+font-size: 1.5rem;
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+
+<i class="fas fa-paw logo-icon"></i>
+
+<span class="site-name"><span class="logo-fur">Fur</span><span class="logo-ever">Ever Home</span></span>
+
+</div>
+
+<nav>
+
+<a href="index.html">Home</a>
+
+<a href="about.html">About</a>
+
+<a href="pets.html">Pets</a>
+
+<a href="adoption.html">Adopt</a>
+
+<a href="login.html"><i class="fas fa-user"></i></a>
+
+</nav>
+
+</header>
+
+<main class="admin-container" id="adminContent" style="display:none;">
+
+<h2>🔒 Admin Panel</h2>
+
+<p style="text-align:center; color:#7a4a1c; font-weight: 600; margin-bottom: 30px;">Manage adoption requests and pet listings</p>
+
+<section class="admin-section">
+
+<h3>📋 Adoption Requests</h3>
+
+<div id="adoptionRequests">Loading requests...</div>
+
+</section>
+
+<section class="admin-section">
+
+<h3>🐾 Manage Pets</h3>
+
+<form id="addPetForm">
+
+<input type="text" id="petName" placeholder="Pet Name" required />
+
+<input type="text" id="petType" placeholder="Type (e.g., Dog, Cat)" required />
+
+<input type="url" id="petImg" placeholder="Image URL" required />
+
+<button type="submit">➕ Add Pet</button>
+
+</form>
+
+<div id="petList">Loading pets...</div>
+
+</section>
+
+</main>
+
+<div id="accessDenied" style="display:none;">
+
+<p>🚫 Access Denied. You must be an admin to view this page.</p>
+
+<p><a href="login.html">Go to Login</a></p>
+
+</div>
+
+<footer>
+
+© 2025 furEver Home. Admin Access Only.
+
+</footer>
+
+<script type="module">
+
+import { auth, db } from "./firebase-config.js";
+
+import {
+
+collection,
+
+getDocs,
+
+addDoc,
+
+deleteDoc,
+
+doc,
+
+updateDoc,
+
+onSnapshot,
+
+getDoc,
+
+} from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
+
+import { onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-auth.js";
+
+const adoptionContainer = document.getElementById("adoptionRequests");
+
+const petList = document.getElementById("petList");
+
+const addPetForm = document.getElementById("addPetForm");
+
+const adminContent = document.getElementById("adminContent");
+
+const accessDenied = document.getElementById("accessDenied");
+
+const adoptionRef = collection(db, "adoption_requests");
+
+const petRef = collection(db, "pets");
+
+// Helper function to check if user is admin
+
+async function checkAdmin(uid) {
+
+if (!uid) return false;
+
+const userDoc = await getDoc(doc(db, "users", uid));
+
+return userDoc.exists() && userDoc.data().role === "admin";
+
+}
+
+// Listen for auth state changes
+
+onAuthStateChanged(auth, async (user) => {
+
+if (user) {
+
+const isAdmin = await checkAdmin(user.uid);
+
+if (isAdmin) {
+
+adminContent.style.display = "block";
+
+accessDenied.style.display = "none";
+
+loadAdminData();
+
+} else {
+
+adminContent.style.display = "none";
+
+accessDenied.style.display = "block";
+
+}
+
+} else {
+
+// Not logged in at all
+
+adminContent.style.display = "none";
+
+accessDenied.style.display = "block";
+
+}
+
+});
+
+// Load adoption requests and pets and set up listeners
+
+function loadAdminData() {
+
+// Load adoption requests live
+
+onSnapshot(adoptionRef, (snapshot) => {
+
+adoptionContainer.innerHTML = "";
+
+if (snapshot.empty) {
+
+adoptionContainer.innerHTML = "<p>No adoption requests yet.</p>";
+
+return;
+
+}
+
+snapshot.forEach((docSnap) => {
+
+const request = docSnap.data();
+
+const div = document.createElement("div");
+
+div.className = "admin-entry";
+
+div.innerHTML = `
+
+<h4>${request.petName} 🐶</h4>
+
+<p><strong>Requested by:</strong> ${request.userEmail}</p>
+
+<label><input type="checkbox" ${
+
+request.adopted ? "checked" : ""
+
+} /> Mark as Adopted</label>
+
+<button class="delete-request" data-id="${docSnap.id}">🗑️ Delete</button>
+
+`;
+
+// Toggle adopted status
+
+div.querySelector("input").addEventListener("change", async (e) => {
+
+await updateDoc(doc(adoptionRef, docSnap.id), {
+
+adopted: e.target.checked,
+
+});
+
+});
+
+// Delete request
+
+div.querySelector(".delete-request").addEventListener("click", async () => {
+
+if (
+
+confirm(
+
+`Delete adoption request for ${request.petName} by ${request.userEmail}?`
+
+)
+
+) {
+
+await deleteDoc(doc(adoptionRef, docSnap.id));
+
+}
+
+});
+
+adoptionContainer.appendChild(div);
+
+});
+
+});
+
+// Load pets live
+
+onSnapshot(petRef, (snapshot) => {
+
+petList.innerHTML = "";
+
+if (snapshot.empty) {
+
+petList.innerHTML = "<p>No pets added yet.</p>";
+
+return;
+
+}
+
+snapshot.forEach((docSnap) => {
+
+const pet = docSnap.data();
+
+const div = document.createElement("div");
+
+div.className = "admin-entry";
+
+div.innerHTML = `
+
+<h4>${pet.name} 🐾</h4>
+
+<p><strong>Type:</strong> ${pet.type}</p>
+
+<img src="${pet.img}" alt="${pet.name}" />
+
+<button class="delete-pet" data-id="${docSnap.id}">🗑️ Delete</button>
+
+`;
+
+// Delete pet
+
+div.querySelector(".delete-pet").addEventListener("click", async () => {
+
+if (confirm(`Delete pet ${pet.name}?`)) {
+
+await deleteDoc(doc(petRef, docSnap.id));
+
+}
+
+});
+
+petList.appendChild(div);
+
+});
+
+});
+
+// Add new pet
+
+addPetForm.addEventListener("submit", async (e) => {
+
+e.preventDefault();
+
+const name = document.getElementById("petName").value.trim();
+
+const type = document.getElementById("petType").value.trim();
+
+const img = document.getElementById("petImg").value.trim();
+
+if (!name || !type || !img) return alert("All fields are required.");
+
+try {
+
+await addDoc(petRef, { name, type, img });
+
+addPetForm.reset();
+
+} catch (error) {
+
+alert("Error adding pet: " + error.message);
+
+}
+
+});
+
+}
+
+</script>
+
+</body>
+
+</html>
